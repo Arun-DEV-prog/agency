@@ -5,6 +5,7 @@ import projectLandingPage from "../assets/project_landing_page.png";
 import projectAiDashboard from "../assets/project_ai_dashboard.png";
 import projectFitPulse from "../assets/project_fitpulse.jpg";
 import projectNovaPay from "../assets/project_novapay.jpg";
+import projectDiuRoutine from "../assets/project_diu_routine.jpg";
 import profilePhoto from "../assets/profile_photo.png";
 import shijanPias from "../assets/shijan_pias.jpg";
 
@@ -263,6 +264,20 @@ export const projects = [
     githubUrl: "https://github.com/Arun-DEV-prog/novapay-fintech-app",
     year: "2025",
     role: "Lead Mobile & Fintech Engineering",
+    featured: true,
+  },
+  {
+    id: 7,
+    title: "DIU Routine Scraper — Smart Class & Exam Schedule App",
+    description:
+      "Automated university routine scraper and timetable manager app for Daffodil International University (DIU) students. Features instant class schedule scraping, real-time exam countdowns, teacher room lookup, and automated schedule update notifications.",
+    category: "mobile",
+    tags: ["React Native", "Python / Scrapy", "Node.js", "Expo", "Push Notifications", "Tailwind CSS"],
+    image: projectDiuRoutine,
+    liveUrl: "https://github.com/Arun-DEV-prog/diu-routine-scraper",
+    githubUrl: "https://github.com/Arun-DEV-prog/diu-routine-scraper",
+    year: "2025",
+    role: "Mobile App Development & Web Scraping",
     featured: true,
   },
 ];
