@@ -6,6 +6,7 @@ import projectAiDashboard from "../assets/project_ai_dashboard.png";
 import projectFitPulse from "../assets/project_fitpulse.jpg";
 import projectNovaPay from "../assets/project_novapay.jpg";
 import projectDiuRoutine from "../assets/project_diu_routine.jpg";
+import projectDeenApp from "../assets/project_deen_app.jpg";
 import profilePhoto from "../assets/profile_photo.png";
 import shijanPias from "../assets/shijan_pias.jpg";
 
@@ -278,6 +279,20 @@ export const projects = [
     githubUrl: "https://github.com/Arun-DEV-prog/diu-routine-scraper",
     year: "2025",
     role: "Mobile App Development & Web Scraping",
+    featured: true,
+  },
+  {
+    id: 8,
+    title: "Deen — Islamic Lifestyle, Quran & Prayer Companion App",
+    description:
+      "All-in-one Islamic mobile application featuring accurate geolocation prayer times with adhan alerts, daily prayer tracker, full Al-Quran with recitation audio, authenticated Al-Hadith collections, real-time Qibla compass, and essential daily Duas.",
+    category: "mobile",
+    tags: ["React Native", "Expo", "Audio Streaming", "Geolocation", "SQLite / Offline", "Tailwind CSS"],
+    image: projectDeenApp,
+    liveUrl: "https://deenapp.islamic",
+    githubUrl: "https://github.com/Arun-DEV-prog/deen-islamic-app",
+    year: "2025",
+    role: "Mobile App Architecture & UI/UX",
     featured: true,
   },
 ];
