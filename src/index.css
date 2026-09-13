@@ -1,0 +1,1004 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* ============================================================
+   CSS Custom Properties — Dark / Light theme
+   ============================================================ */
+:root {
+  --bg: #0b0f19;
+  --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #151a26 50%, #0b0f19 100%);
+  --bg-secondary: #0e0e1a;
+  --card: #12121f;
+  --card-hover: #171727;
+  --text: #F0F0FF;
+  --text-secondary: #c8c8e8;
+  --muted: #8888aa;
+  --border: #1e1e35;
+  --border-light: #252540;
+  --primary: #7C3AED;
+  --primary-glow: rgba(124, 58, 237, 0.3);
+  --secondary: #A855F7;
+  --accent: #22c55e;
+  --accent-muted: rgba(34, 197, 94, 0.15);
+
+  /* Sidebar */
+  --sidebar-width: 370px;
+  --sidebar-width-lg: 370px;
+  --rightnav-width: 56px;
+
+  /* Spacing Scale */
+  --space-xs: 0.5rem;
+  /* 8px */
+  --space-sm: 0.75rem;
+  /* 12px */
+  --space-md: 1rem;
+  /* 16px */
+  --space-lg: 1.5rem;
+  /* 24px */
+  --space-xl: 2rem;
+  /* 32px */
+  --space-2xl: 3rem;
+  /* 48px */
+  --space-3xl: 4rem;
+  /* 64px */
+  --space-4xl: 5rem;
+  /* 80px */
+  --space-5xl: 6rem;
+  /* 96px */
+
+  /* Section padding */
+  --section-py: 6rem;
+  --section-px: 2.5rem;
+
+  /* Card */
+  --card-radius: 20px;
+  --card-radius-lg: 28px;
+
+  /* Typography */
+  --font-hero: clamp(40px, 5vw, 68px);
+  --font-h2: clamp(32px, 4vw, 56px);
+  --font-h3: clamp(20px, 2.5vw, 28px);
+  --font-body: 1rem;
+  --font-sans: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sm: 0.875rem;
+  --font-xs: 0.75rem;
+  --font-xxs: 0.675rem;
+
+  --line-height-tight: 1.1;
+  --line-height-snug: 1.3;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.75;
+}
+
+.light {
+  --bg: #d8e7e4;
+  --bg-gradient: linear-gradient(135deg, #d8e7e4 0%, #c2d9d4 40%, #eef3f1 100%);
+  --bg-secondary: #e9f0ee;
+  --card: #ffffff;
+  --card-hover: #f8f7f4;
+  --text: #0f0f1a;
+  --text-secondary: #2d2d45;
+  --muted: #5c6b73;
+  --border: #dddde8;
+  --border-light: #e8e8f0;
+  --primary: #7C3AED;
+  --primary-glow: rgba(124, 58, 237, 0.15);
+  --secondary: #A855F7;
+  --accent: #16a34a;
+  --accent-muted: rgba(22, 163, 74, 0.12);
+}
+
+/* ============================================================
+   Reset & Base
+   ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg-gradient);
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+  line-height: var(--line-height-normal);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ============================================================
+   Custom Scrollbar
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary), var(--secondary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* ============================================================
+   Cursor
+   ============================================================ */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease, background 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-outline {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(124, 58, 237, 0.6);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.18s ease;
+}
+
+/* ============================================================
+   Glass / Card
+   ============================================================ */
+.glass {
+  background: rgba(18, 18, 31, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.light .glass {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================================
+   Typography Utilities
+   ============================================================ */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heading-xl,
+.section-title,
+.section-badge,
+.hero-heading,
+.stats-heading,
+.card-title,
+.cta-heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: var(--line-height-tight);
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-sans);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: var(--space-3xl) 0;
+}
+
+/* ============================================================
+   Section Badge
+   ============================================================ */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 20px;
+  font-family: "Sora", sans-serif;
+}
+
+/* ============================================================
+   Section Layout
+   ============================================================ */
+.section {
+  padding: var(--section-py) var(--section-px);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* About grid responsive layout */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(300px, 420px);
+  gap: 3rem;
+  margin-top: 18px;
+  min-width: 0;
+}
+
+@media (max-width: 1080px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .about-grid > .about-column-right {
+    order: 2;
+  }
+}
+
+.about-panel {
+  background: var(--bg-secondary);
+  border-radius: 32px;
+  padding: 2.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/*.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 420px);
+  gap: 2.5rem;
+  align-items: start;
+}*/
+
+.about-column-left,
+.about-column-right {
+  min-width: 0;
+}
+
+.about-column-left {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.about-column-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-top: 1.7rem;
+  transform: translateY(28px);
+}
+
+.about-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 20px;
+  min-height: 134px;
+}
+
+.about-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.about-card-title {
+  font-weight: 800;
+  font-size: 0.94rem;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.about-card-desc {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.about-status-card {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 24px;
+  padding: 20px;
+}
+
+.about-status-card strong {
+  display: block;
+  font-size: 0.96rem;
+  margin-bottom: 6px;
+}
+
+.about-status-card span {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+}
+
+.about-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.about-stat-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+}
+
+.about-stat-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.about-stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.section-header {
+  margin-bottom: 3.5rem;
+}
+
+.section-title {
+  font-family: "Sora", sans-serif;
+  font-weight: 800;
+  font-size: var(--font-h2);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: var(--font-body);
+  line-height: var(--line-height-relaxed);
+  color: var(--muted);
+  max-width: 560px;
+}
+
+/* ============================================================
+   Button Ripple
+   ============================================================ */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
+
+.btn-ripple:active::after {
+  opacity: 1;
+}
+
+/* ============================================================
+   Floating Animation
+   ============================================================ */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  33% {
+    transform: translateY(-18px) rotate(3deg);
+  }
+
+  66% {
+    transform: translateY(10px) rotate(-2deg);
+  }
+}
+
+@keyframes floatY {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.animate-float {
+  animation: float 7s ease-in-out infinite;
+}
+
+.animate-float-y {
+  animation: floatY 5s ease-in-out infinite;
+}
+
+/* ============================================================
+   Pulse Glow (availability dot)
+   ============================================================ */
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   Typing cursor blink
+   ============================================================ */
+@keyframes blink {
+
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--primary);
+  margin-left: 3px;
+  animation: blink 0.85s step-end infinite;
+  vertical-align: text-bottom;
+  border-radius: 1px;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+/* ============================================================
+   Portfolio Card Overlay
+   ============================================================ */
+.portfolio-card {
+  position: relative;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 8, 16, 0.96) 0%, rgba(8, 8, 16, 0.5) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  border-radius: inherit;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+/* ============================================================
+   Skill Bar Shimmer
+   ============================================================ */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.skill-bar-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+/* ============================================================
+   Sidebar scrollbar hide
+   ============================================================ */
+.sidebar-scroll {
+  scrollbar-width: none;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================================
+   Swiper overrides
+   ============================================================ */
+.swiper-pagination-bullet {
+  background: var(--muted) !important;
+  opacity: 0.5 !important;
+  width: 7px !important;
+  height: 7px !important;
+  transition: all 0.3s !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--primary) !important;
+  opacity: 1 !important;
+  width: 24px !important;
+  border-radius: 3px !important;
+}
+
+/* ============================================================
+   Form input focus ring
+   ============================================================ */
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* ============================================================
+   Right sidebar nav dots — enhanced
+   ============================================================ */
+.right-nav-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--muted);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  background: transparent;
+  display: block;
+}
+
+.right-nav-dot.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-glow), 0 0 12px var(--primary-glow);
+  height: 28px;
+  border-radius: 4px;
+}
+
+.right-nav-dot:hover:not(.active) {
+  background: var(--muted);
+  border-color: var(--muted);
+  transform: scale(1.3);
+}
+
+/* ============================================================
+   Section divider
+   ============================================================ */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0 auto;
+}
+
+/* ============================================================
+   Card utilities — enhanced
+   ============================================================ */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease,
+    border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 8px 24px rgba(124, 58, 237, 0.12);
+  border-color: var(--border-light);
+}
+
+.card-strong {
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.24);
+}
+
+.icon-card {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(124, 58, 237, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+}
+
+.icon-card:hover {
+  transform: translateY(-2px);
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--font-sm);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.35);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 600;
+  font-size: var(--font-sm);
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.timeline-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* ============================================================
+   Card hover lift
+   ============================================================ */
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px -12px rgba(124, 58, 237, 0.25);
+}
+
+/* ============================================================
+   Loading screen progress bar
+   ============================================================ */
+@keyframes loadFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.load-fade {
+  animation: loadFade 0.5s ease forwards;
+}
+
+/* ============================================================
+   Smooth image zoom on hover
+   ============================================================ */
+.img-zoom-wrap {
+  overflow: hidden;
+}
+
+.img-zoom-wrap img,
+.img-zoom-wrap .img-inner {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-zoom-wrap:hover img,
+.img-zoom-wrap:hover .img-inner {
+  transform: scale(1.08);
+}
+
+/* ============================================================
+   Timeline dot glow
+   ============================================================ */
+.timeline-dot {
+  box-shadow: 0 0 0 6px rgba(124, 58, 237, 0.15), 0 0 20px rgba(124, 58, 237, 0.2);
+}
+
+/* ============================================================
+   Noise texture overlay (subtle)
+   ============================================================ */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+/* ============================================================
+   Mobile hamburger button — show on mobile/tablet
+   ============================================================ */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 60;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.mobile-menu-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   Responsive Layout
+   ============================================================ */
+
+/* Mobile first — default is mobile */
+@media (max-width: 767px) {
+  :root {
+    --section-py: 4rem;
+    --section-px: 1.25rem;
+    --font-h2: clamp(26px, 7vw, 36px);
+    --font-hero: clamp(32px, 9vw, 48px);
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .cursor-dot,
+  .cursor-outline {
+    display: none;
+  }
+
+  .section-subtitle {
+    max-width: 100%;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  /* Timeline responsive */
+  .timeline-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+
+  .timeline-row>div:first-child,
+  .timeline-row>div:last-child {
+    text-align: left !important;
+  }
+
+  /* Hide right nav on mobile */
+  .right-nav-container {
+    display: none !important;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --section-py: 5rem;
+    --section-px: 2rem;
+    --font-h2: clamp(30px, 5vw, 44px);
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .cursor-dot,
+  .cursor-outline {
+    display: none;
+  }
+
+  /* Hide right nav on tablet */
+  .right-nav-container {
+    display: none !important;
+  }
+}
+
+/* Desktop / large tablet */
+@media (min-width: 1024px) {
+  :root {
+    --section-py: 6rem;
+    --section-px: 3rem;
+  }
+
+  #main-content-area {
+    margin-left: 420px;
+    margin-right: 32px;
+    padding-top: 96px;
+    padding-bottom: 24px;
+  }
+
+  .mobile-menu-btn {
+    display: none !important;
+  }
+}
+
+/* XL Desktop */
+@media (min-width: 1280px) {
+  :root {
+    --section-px: 5rem;
+  }
+}
+
+/* 2XL Desktop */
+@media (min-width: 1536px) {
+  :root {
+    --section-px: 6rem;
+  }
+}
+
+/* iPhone SE specific */
+@media (max-width: 375px) {
+  :root {
+    --section-py: 3rem;
+    --section-px: 1rem;
+    --font-h2: clamp(24px, 8vw, 32px);
+    --font-hero: clamp(28px, 10vw, 40px);
+  }
+}
+
+/* Custom Header and Sidebar Responsive Classes */
+@media (max-width: 1023px) {
+  .mobile-header {
+    display: none !important;
+  }
+
+  .desktop-sidebar-container {
+    display: none !important;
+  }
+
+  #main-content-area {
+    padding-top: 88px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobile-header {
+    display: none !important;
+  }
+
+  .desktop-sidebar-container {
+    display: block !important;
+  }
+}
+
+
