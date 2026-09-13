@@ -3,6 +3,7 @@ import projectPharmaHub from "../assets/project_pharmahub.png";
 import projectStyleThread from "../assets/project_stylethread.png";
 import projectLandingPage from "../assets/project_landing_page.png";
 import projectAiDashboard from "../assets/project_ai_dashboard.png";
+import projectDurotan from "../assets/project_durotan.png";
 import projectFitPulse from "../assets/project_fitpulse.jpg";
 import projectNovaPay from "../assets/project_novapay.jpg";
 import projectDiuRoutine from "../assets/project_diu_routine.jpg";
@@ -227,18 +228,19 @@ export const projects = [
   },
   {
     id: 4,
-    title: "AI Analytics Dashboard",
+    title: "Gopalganj Language Academy",
     description:
-      "Modern analytics platform with AI-powered predictive insights, dark mode, and real-time streaming data visualization.",
-    category: "frontend",
-    tags: ["React", "TypeScript", "Recharts", "TailwindCSS"],
-    image: projectAiDashboard,
-    liveUrl: "#",
-    githubUrl: "#",
+      "Comprehensive educational web platform and brand experience designed for a leading language learning institute, featuring student course enrollment, curriculum showcase, and interactive portal.",
+    category: "fullstack",
+    tags: ["React", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Brand Identity"],
+    image: projectDurotan,
+    liveUrl: "https://glacenter.com/",
+    githubUrl: "https://github.com/Arun-DEV-prog",
     year: "2024",
-    role: "Lead Frontend Architecture",
-    featured: false,
+    role: "Lead Full-Stack Developer & Designer",
+    featured: true,
   },
+
   {
     id: 5,
     title: "FitPulse — AI Workout & Health Tracker App",
@@ -294,6 +296,20 @@ export const projects = [
     year: "2025",
     role: "Mobile App Architecture & UI/UX",
     featured: true,
+  },
+  {
+    id: 9,
+    title: "AI Analytics Dashboard",
+    description:
+      "Modern analytics platform with AI-powered predictive insights, dark mode, and real-time streaming data visualization.",
+    category: "frontend",
+    tags: ["React", "TypeScript", "Recharts", "TailwindCSS"],
+    image: projectAiDashboard,
+    liveUrl: "#",
+    githubUrl: "#",
+    year: "2024",
+    role: "Lead Frontend Architecture",
+    featured: false,
   },
 ];
 
